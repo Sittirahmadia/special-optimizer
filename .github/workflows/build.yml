@@ -29,46 +29,22 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Download Gradle Runtime
+    - name: Setup Gradle Distribution
       run: |
-        mkdir -p gradle/wrapper
-        cd /tmp
+        # Download gradle distribution to GRADLE_HOME
+        mkdir -p $HOME/.gradle/wrapper/dists
+        cd $HOME/.gradle/wrapper/dists
         
-        # Download gradle distribution
         echo "Downloading Gradle 8.9..."
         curl -L -o gradle-8.9-bin.zip "https://services.gradle.org/distributions/gradle-8.9-bin.zip"
         unzip -q gradle-8.9-bin.zip
         
-        # Copy wrapper jar
-        cp gradle-8.9/lib/gradle-wrapper-shared-8.9.jar "${{ github.workspace }}/gradle/wrapper/gradle-wrapper.jar"
+        # Set GRADLE_HOME
+        echo "GRADLE_HOME=$HOME/.gradle/wrapper/dists/gradle-8.9" >> $GITHUB_ENV
+        echo "PATH=$HOME/.gradle/wrapper/dists/gradle-8.9/bin:$PATH" >> $GITHUB_ENV
         
-        # Copy all lib jars for classpath resolution
-        cp -r gradle-8.9/lib "${{ github.workspace }}/gradle/wrapper/"
-        
-        # Create classpath wrapper script
-        cd "${{ github.workspace }}/gradle/wrapper"
-        
-        # Generate classpath from all jars
-        CLASSPATH="$(find lib -name '*.jar' -type f | tr '\n' ':' | sed 's/:$//')"
-        
-        # Create wrapper runner that properly sets classpath
-        cat > gradle-wrapper-runner.sh << 'SCRIPT'
-        #!/bin/bash
-        SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-        GRADLE_WRAPPER_JAR="$SCRIPT_DIR/gradle-wrapper.jar"
-        
-        # Build classpath from lib directory
-        CLASSPATH="$GRADLE_WRAPPER_JAR"
-        for jar in "$SCRIPT_DIR"/lib/*.jar; do
-          CLASSPATH="$CLASSPATH:$jar"
-        done
-        
-        exec java -cp "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
-        SCRIPT
-        
-        chmod +x gradle-wrapper-runner.sh
-        ls -lh gradle-wrapper.jar
-        echo "Gradle runtime setup complete"
+        ls -la gradle-8.9/bin/
+        echo "Gradle setup complete"
 
     - name: Cache Gradle packages
       uses: actions/cache@v4
