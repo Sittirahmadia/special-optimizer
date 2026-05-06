@@ -3,10 +3,8 @@ package com.cyberbeast.optimizer.data.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
-import androidx.room.TypeConverters
 
 @Entity(tableName = "profiles")
-@TypeConverters(MapConverter::class)
 data class ProfileEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
