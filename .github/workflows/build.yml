@@ -29,26 +29,46 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Download Gradle Wrapper Dependencies
+    - name: Download Gradle Runtime
       run: |
         mkdir -p gradle/wrapper
-        # Download gradle distribution and extract all required lib jars
         cd /tmp
+        
+        # Download gradle distribution
+        echo "Downloading Gradle 8.9..."
         curl -L -o gradle-8.9-bin.zip "https://services.gradle.org/distributions/gradle-8.9-bin.zip"
         unzip -q gradle-8.9-bin.zip
         
-        # Copy wrapper jar and its dependencies
-        cp gradle-8.9/lib/gradle-wrapper-shared-8.9.jar "${{ github.workspace }}/gradle/wrapper/"
-        cp gradle-8.9/lib/plugins/gradle-wrapper-main-8.9.jar "${{ github.workspace }}/gradle/wrapper/"
+        # Copy wrapper jar
+        cp gradle-8.9/lib/gradle-wrapper-shared-8.9.jar "${{ github.workspace }}/gradle/wrapper/gradle-wrapper.jar"
         
-        # Create a wrapper jar that includes all dependencies
+        # Copy all lib jars for classpath resolution
+        cp -r gradle-8.9/lib "${{ github.workspace }}/gradle/wrapper/"
+        
+        # Create classpath wrapper script
         cd "${{ github.workspace }}/gradle/wrapper"
-        jar xf gradle-wrapper-shared-8.9.jar
-        jar xf gradle-wrapper-main-8.9.jar
-        jar cf gradle-wrapper.jar org/ META-INF/
         
-        rm -f gradle-wrapper-shared-8.9.jar gradle-wrapper-main-8.9.jar
+        # Generate classpath from all jars
+        CLASSPATH="$(find lib -name '*.jar' -type f | tr '\n' ':' | sed 's/:$//')"
+        
+        # Create wrapper runner that properly sets classpath
+        cat > gradle-wrapper-runner.sh << 'SCRIPT'
+        #!/bin/bash
+        SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+        GRADLE_WRAPPER_JAR="$SCRIPT_DIR/gradle-wrapper.jar"
+        
+        # Build classpath from lib directory
+        CLASSPATH="$GRADLE_WRAPPER_JAR"
+        for jar in "$SCRIPT_DIR"/lib/*.jar; do
+          CLASSPATH="$CLASSPATH:$jar"
+        done
+        
+        exec java -cp "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
+        SCRIPT
+        
+        chmod +x gradle-wrapper-runner.sh
         ls -lh gradle-wrapper.jar
+        echo "Gradle runtime setup complete"
 
     - name: Cache Gradle packages
       uses: actions/cache@v4
