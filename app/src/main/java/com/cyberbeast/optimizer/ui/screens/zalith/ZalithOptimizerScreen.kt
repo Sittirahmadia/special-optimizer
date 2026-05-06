@@ -104,12 +104,7 @@ fun ZalithOptimizerScreen(
 
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                "• GL4ES: Best for Mali/Adreno (default)
-• ANGLE: Direct3D backend
-• VIRGL: Virtual GPU (cloud gaming)
-• ZINK: Vulkan-based OpenGL
-• LTW: Lightweight wrapper
-• MobileGlues: Best for modern GPUs",
+                "• GL4ES: Best for Mali/Adreno (default)\n• ANGLE: Direct3D backend\n• VIRGL: Virtual GPU (cloud gaming)\n• ZINK: Vulkan-based OpenGL\n• LTW: Lightweight wrapper\n• MobileGlues: Best for modern GPUs",
                 style = MaterialTheme.typography.bodySmall,
                 color = CyberTextMuted
             )

@@ -66,13 +66,11 @@ object ShizukuHelper {
 
             var line: String?
             while (stdoutReader.readLine().also { line = it } != null) {
-                stdout.append(line).append("
-")
+                stdout.append(line).append("\n")
             }
 
             while (stderrReader.readLine().also { line = it } != null) {
-                stderr.append(line).append("
-")
+                stderr.append(line).append("\n")
             }
 
             val exitCode = process.waitFor()
