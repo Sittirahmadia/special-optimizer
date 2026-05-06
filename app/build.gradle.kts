@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.cyberbeast.optimizer"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 100
         versionName = "1.0.0-CyberBeast"
