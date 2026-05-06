@@ -35,9 +35,11 @@ jobs:
         # Download gradle distribution
         curl -L -o /tmp/gradle-8.9-bin.zip \
           "https://services.gradle.org/distributions/gradle-8.9-bin.zip"
-        # Extract wrapper jar from distribution
-        unzip -j /tmp/gradle-8.9-bin.zip "gradle-8.9/lib/gradle-wrapper.jar" \
+        # Extract wrapper jar from distribution - the actual jar is in plugins folder
+        unzip -j /tmp/gradle-8.9-bin.zip "gradle-8.9/lib/plugins/gradle-wrapper-main-8.9.jar" \
           -d gradle/wrapper/
+        # Rename to gradle-wrapper.jar
+        mv gradle/wrapper/gradle-wrapper-main-8.9.jar gradle/wrapper/gradle-wrapper.jar
         rm /tmp/gradle-8.9-bin.zip
         # Verify
         ls -lh gradle/wrapper/gradle-wrapper.jar
