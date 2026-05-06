@@ -17,3 +17,7 @@ keystore.jks
 *.jks
 /app/release/
 /app/debug/
+
+# Keep gradle wrapper files
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
