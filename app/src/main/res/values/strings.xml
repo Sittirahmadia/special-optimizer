@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">14C Cyber Beast</string>
+    <string name="app_name_full">Redmi 14C Cyber Beast Optimizer</string>
+
+    <!-- Navigation -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_gaming">Gaming</string>
+    <string name="nav_tweaks">Tweaks</string>
+    <string name="nav_strings">Strings DB</string>
+    <string name="nav_advanced">Advanced</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">CYBER BEAST DASHBOARD</string>
+    <string name="one_tap_boost">ONE TAP CYBER BOOST</string>
+    <string name="system_status">System Status</string>
+    <string name="cpu_usage">CPU Usage</string>
+    <string name="ram_usage">RAM Usage</string>
+    <string name="battery_temp">Battery Temp</string>
+    <string name="fps_current">Current FPS</string>
+    <string name="shizuku_status">Shizuku Status</string>
+    <string name="shizuku_connected">Connected</string>
+    <string name="shizuku_disconnected">Disconnected</string>
+    <string name="active_profile">Active Profile</string>
+    <string name="profile_cyber_beast">Cyber Beast</string>
+    <string name="profile_extreme_fps">Extreme FPS</string>
+    <string name="profile_balanced">Balanced</string>
+    <string name="profile_battery">Battery Saver</string>
+    <string name="profile_custom">Custom</string>
+
+    <!-- Gaming -->
+    <string name="gaming_title">GAMING OPTIMIZER</string>
+    <string name="game_profiles">Game Profiles</string>
+    <string name="create_profile">Create Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="delete_profile">Delete Profile</string>
+    <string name="apply_profile">Apply Profile</string>
+    <string name="floating_fps">Floating FPS Monitor</string>
+    <string name="auto_detect">Auto Game Detection</string>
+    <string name="game_turbo">Game Turbo Mode</string>
+
+    <!-- Tweaks -->
+    <string name="tweaks_title">SYSTEM TWEAKS</string>
+    <string name="refresh_rate">Refresh Rate</string>
+    <string name="performance_mode">Performance Mode</string>
+    <string name="animation_scale">Animation Scale</string>
+    <string name="gpu_rendering">GPU Rendering</string>
+    <string name="ram_manager">RAM Manager</string>
+    <string name="thermal_control">Thermal Control</string>
+    <string name="network_opt">Network Optimizer</string>
+    <string name="touch_response">Touch Response</string>
+    <string name="disable_ads">Disable Ads</string>
+
+    <!-- Strings Database -->
+    <string name="strings_title">OPTIMIZER STRINGS DATABASE</string>
+    <string name="strings_count">200+ Strings Available</string>
+    <string name="search_strings">Search strings...</string>
+    <string name="filter_category">Filter Category</string>
+    <string name="sort_by">Sort By</string>
+    <string name="copy_string">Copy</string>
+    <string name="apply_string">Apply</string>
+    <string name="add_custom">Add Custom</string>
+    <string name="edit_string">Edit String</string>
+    <string name="delete_string">Delete</string>
+    <string name="string_name">Name</string>
+    <string name="string_key">Key</string>
+    <string name="string_value">Value</string>
+    <string name="string_table">Table</string>
+    <string name="string_description">Description</string>
+    <string name="string_category">Category</string>
+    <string name="string_fps_boost">+FPS</string>
+    <string name="string_battery_impact">Battery Impact</string>
+    <string name="string_risk">Risk Level</string>
+
+    <!-- Advanced -->
+    <string name="advanced_title">ADVANCED PANEL</string>
+    <string name="manual_setedit">Manual SetEdit</string>
+    <string name="command_executor">Command Executor</string>
+    <string name="renderer_switch">Renderer Switch</string>
+    <string name="cpu_governor">CPU Governor</string>
+    <string name="io_scheduler">I/O Scheduler</string>
+    <string name="zram_config">ZRAM Config</string>
+    <string name="backup_restore">Backup &amp; Restore</string>
+    <string name="export_profile">Export Profile</string>
+    <string name="import_profile">Import Profile</string>
+
+    <!-- Profile -->
+    <string name="profile_title">PROFILE MANAGER</string>
+    <string name="save_profile">Save Current</string>
+    <string name="load_profile">Load Profile</string>
+    <string name="delete_profile_confirm">Delete this profile?</string>
+    <string name="profile_name_hint">Profile name...</string>
+    <string name="profile_description">Description</string>
+
+    <!-- Common -->
+    <string name="apply">Apply</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="success">Success</string>
+    <string name="failed">Failed</string>
+    <string name="warning">Warning</string>
+    <string name="error">Error</string>
+    <string name="loading">Loading...</string>
+    <string name="processing">Processing...</string>
+    <string name="reboot_required">Reboot Required</string>
+    <string name="reboot_now">Reboot Now</string>
+    <string name="reboot_later">Later</string>
+    <string name="risk_low">Low Risk</string>
+    <string name="risk_medium">Medium Risk</string>
+    <string name="risk_high">High Risk</string>
+    <string name="risk_extreme">Extreme Risk</string>
+
+    <!-- Shizuku -->
+    <string name="shizuku_title">SHIZUKU SETUP</string>
+    <string name="shizuku_guide">Setup Guide</string>
+    <string name="shizuku_wireless">Wireless Debugging</string>
+    <string name="shizuku_adb">ADB WiFi</string>
+    <string name="shizuku_pairing">Pairing Code</string>
+    <string name="shizuku_start">Start Shizuku</string>
+    <string name="shizuku_permission">Grant Permission</string>
+
+    <!-- Warnings -->
+    <string name="warning_root_needed">Some features require Shizuku/ADB</string>
+    <string name="warning_high_risk">High risk tweak - proceed with caution</string>
+    <string name="warning_thermal">May increase device temperature</string>
+    <string name="warning_battery">Will increase battery drain</string>
+
+    <!-- Zalith Launcher -->
+    <string name="zalith_title">ZALITH OPTIMIZER</string>
+    <string name="zalith_subtitle">Minecraft Java Optimizer</string>
+    <string name="zalith_status">Zalith Status</string>
+    <string name="zalith_installed">Installed</string>
+    <string name="zalith_not_installed">Not Installed</string>
+    <string name="zalith_max_boost">ZALITH MAX BOOST</string>
+    <string name="zalith_renderer">Renderer Pipeline</string>
+    <string name="zalith_jvm_memory">JVM Memory</string>
+    <string name="zalith_jvm_args">JVM Arguments</string>
+    <string name="zalith_g1gc">G1GC Optimized</string>
+    <string name="zalith_pretouch">Always PreTouch</string>
+    <string name="zalith_disable_explicit_gc">Disable Explicit GC</string>
+    <string name="zalith_large_pages">Large Pages</string>
+    <string name="zalith_sustainable_perf">Sustainable Performance</string>
+    <string name="zalith_high_perf_cores">High Performance Cores</string>
+    <string name="zalith_reduce_resolution">Reduce Resolution</string>
+    <string name="zalith_fast_mode">Fast Mode</string>
+    <string name="zalith_vsync">Disable VSync</string>
+    <string name="zalith_optifine">OptiFine Compatible</string>
+    <string name="zalith_clear_cache">Clear Cache</string>
+    <string name="zalith_reset">Reset Zalith</string>
+    <string name="zalith_game_dir">Game Directory</string>
+    <string name="zalith_custom_jvm">Custom JVM Args</string>
+
+</resources>
