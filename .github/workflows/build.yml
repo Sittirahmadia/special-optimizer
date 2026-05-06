@@ -37,7 +37,7 @@ jobs:
         
         echo "Downloading Gradle 8.9..."
         curl -L -o gradle-8.9-bin.zip "https://services.gradle.org/distributions/gradle-8.9-bin.zip"
-        unzip -q gradle-8.9-bin.zip
+        unzip -q -o gradle-8.9-bin.zip
         
         # Set GRADLE_HOME
         echo "GRADLE_HOME=$HOME/.gradle/wrapper/dists/gradle-8.9" >> $GITHUB_ENV
