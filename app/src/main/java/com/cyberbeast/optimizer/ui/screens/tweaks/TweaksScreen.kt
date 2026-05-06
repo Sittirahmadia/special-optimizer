@@ -55,16 +55,16 @@ fun TweaksScreen(
 
             // Toggles
             SectionTitle("PERFORMANCE TOGGLES")
-            CyberToggle("GPU Rendering", "Force GPU rendering for all drawing", false) { viewModel.toggleGpuRendering(it) }
-            CyberToggle("Performance Mode", "Maximize CPU/GPU performance", false) { viewModel.togglePerformanceMode(it) }
-            CyberToggle("Disable Power Keeper", "Stop MIUI power management", false) { viewModel.togglePowerKeeper(it) }
-            CyberToggle("Aggressive RAM", "Kill background apps aggressively", false) { viewModel.toggleRamManager(it) }
-            CyberToggle("Touch Boost", "Reduce touch latency", false) { viewModel.optimizeTouch(it) }
-            CyberToggle("Network Optimize", "Optimize TCP/DNS settings", false) { viewModel.optimizeNetwork(it) }
-            CyberToggle("Thermal Reduce", "Reduce thermal throttling (RISKY)", false) { viewModel.reduceThermal(it) }
-            CyberToggle("Disable Ads", "Remove MIUI ads & analytics", false) { viewModel.toggleAds(it) }
-            CyberToggle("Force MSAA", "Enable 4x MSAA anti-aliasing", false) { viewModel.forceMsaa(it) }
-            CyberToggle("Disable Blur", "Remove blur effects for FPS", false) { viewModel.disableBlur(it) }
+            CyberToggle("GPU Rendering", "Force GPU rendering for all drawing", false, onCheckedChange = { viewModel.toggleGpuRendering(it) })
+            CyberToggle("Performance Mode", "Maximize CPU/GPU performance", false, onCheckedChange = { viewModel.togglePerformanceMode(it) })
+            CyberToggle("Disable Power Keeper", "Stop MIUI power management", false, onCheckedChange = { viewModel.togglePowerKeeper(it) })
+            CyberToggle("Aggressive RAM", "Kill background apps aggressively", false, onCheckedChange = { viewModel.toggleRamManager(it) })
+            CyberToggle("Touch Boost", "Reduce touch latency", false, onCheckedChange = { viewModel.optimizeTouch(it) })
+            CyberToggle("Network Optimize", "Optimize TCP/DNS settings", false, onCheckedChange = { viewModel.optimizeNetwork(it) })
+            CyberToggle("Thermal Reduce", "Reduce thermal throttling (RISKY)", false, onCheckedChange = { viewModel.reduceThermal(it) })
+            CyberToggle("Disable Ads", "Remove MIUI ads & analytics", false, onCheckedChange = { viewModel.toggleAds(it) })
+            CyberToggle("Force MSAA", "Enable 4x MSAA anti-aliasing", false, onCheckedChange = { viewModel.forceMsaa(it) })
+            CyberToggle("Disable Blur", "Remove blur effects for FPS", false, onCheckedChange = { viewModel.disableBlur(it) })
 
             Spacer(modifier = Modifier.height(16.dp))
 

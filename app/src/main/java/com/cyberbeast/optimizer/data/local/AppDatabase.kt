@@ -17,7 +17,7 @@ import com.cyberbeast.optimizer.utils.Constants
         GameProfileEntity::class
     ],
     version = Constants.DATABASE_VERSION,
-    exportSchema = true
+    exportSchema = false
 )
 @TypeConverters(MapConverter::class)
 abstract class AppDatabase : RoomDatabase() {

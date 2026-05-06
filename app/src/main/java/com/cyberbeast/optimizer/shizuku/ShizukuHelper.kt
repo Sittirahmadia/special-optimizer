@@ -52,11 +52,20 @@ object ShizukuHelper {
                 return CommandResult(false, "", "Shizuku not available or permission denied")
             }
 
-            val process = Shizuku.newProcess(
+            // Use reflection to call newProcess since it's private in newer Shizuku versions
+            val processMethod = Shizuku.javaClass.getDeclaredMethod(
+                "newProcess",
+                Array<String>::class.java,
+                Array<String>::class.java,
+                String::class.java
+            )
+            processMethod.isAccessible = true
+            val process = processMethod.invoke(
+                Shizuku,
                 arrayOf("sh", "-c", command),
                 null,
                 null
-            )
+            ) as dev.rikka.shizuku.ShizukuRemoteProcess
 
             val stdout = StringBuilder()
             val stderr = StringBuilder()
