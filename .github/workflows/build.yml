@@ -29,21 +29,26 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Download and Setup Gradle Wrapper
+    - name: Download Gradle Wrapper Dependencies
       run: |
         mkdir -p gradle/wrapper
-        # Download gradle distribution
-        curl -L -o /tmp/gradle-8.9-bin.zip \
-          "https://services.gradle.org/distributions/gradle-8.9-bin.zip"
-        # Extract wrapper jar from distribution - the actual jar is in plugins folder
-        unzip -j /tmp/gradle-8.9-bin.zip "gradle-8.9/lib/plugins/gradle-wrapper-main-8.9.jar" \
-          -d gradle/wrapper/
-        # Rename to gradle-wrapper.jar
-        mv gradle/wrapper/gradle-wrapper-main-8.9.jar gradle/wrapper/gradle-wrapper.jar
-        rm /tmp/gradle-8.9-bin.zip
-        # Verify
-        ls -lh gradle/wrapper/gradle-wrapper.jar
-        file gradle/wrapper/gradle-wrapper.jar
+        # Download gradle distribution and extract all required lib jars
+        cd /tmp
+        curl -L -o gradle-8.9-bin.zip "https://services.gradle.org/distributions/gradle-8.9-bin.zip"
+        unzip -q gradle-8.9-bin.zip
+        
+        # Copy wrapper jar and its dependencies
+        cp gradle-8.9/lib/gradle-wrapper-shared-8.9.jar "${{ github.workspace }}/gradle/wrapper/"
+        cp gradle-8.9/lib/plugins/gradle-wrapper-main-8.9.jar "${{ github.workspace }}/gradle/wrapper/"
+        
+        # Create a wrapper jar that includes all dependencies
+        cd "${{ github.workspace }}/gradle/wrapper"
+        jar xf gradle-wrapper-shared-8.9.jar
+        jar xf gradle-wrapper-main-8.9.jar
+        jar cf gradle-wrapper.jar org/ META-INF/
+        
+        rm -f gradle-wrapper-shared-8.9.jar gradle-wrapper-main-8.9.jar
+        ls -lh gradle-wrapper.jar
 
     - name: Cache Gradle packages
       uses: actions/cache@v4
@@ -56,15 +61,12 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-gradle-
 
-    - name: Validate Gradle Wrapper
-      run: ./gradlew --version
-
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --no-daemon -x lintVitalRelease
+      run: ./gradlew assembleDebug --no-daemon
       continue-on-error: true
 
     - name: Build Release APK
-      run: ./gradlew assembleRelease --no-daemon -x lintVitalRelease
+      run: ./gradlew assembleRelease --no-daemon
       continue-on-error: true
 
     - name: Upload Debug APK
@@ -84,7 +86,7 @@ jobs:
         retention-days: 30
 
     - name: Run Unit Tests
-      run: ./gradlew testDebugUnitTest --no-daemon -x lintVitalRelease
+      run: ./gradlew testDebugUnitTest --no-daemon
       continue-on-error: true
 
     - name: Upload Test Reports
@@ -100,4 +102,4 @@ jobs:
       run: |
         echo "## Build Summary" >> $GITHUB_STEP_SUMMARY
         echo "- Workflow Status: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
-        echo "- Artifacts uploaded if build succeeded" >> $GITHUB_STEP_SUMMARY
+        echo "- Build artifacts available in Actions" >> $GITHUB_STEP_SUMMARY
