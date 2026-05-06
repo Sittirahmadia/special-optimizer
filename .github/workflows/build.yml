@@ -29,12 +29,19 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Download Gradle Wrapper
+    - name: Download and Setup Gradle Wrapper
       run: |
         mkdir -p gradle/wrapper
-        curl -L https://repo.gradle.org/gradle/gradle-wrapper/gradle-wrapper-8.9.jar \
-          -o gradle/wrapper/gradle-wrapper.jar
+        # Download gradle distribution
+        curl -L -o /tmp/gradle-8.9-bin.zip \
+          "https://services.gradle.org/distributions/gradle-8.9-bin.zip"
+        # Extract wrapper jar from distribution
+        unzip -j /tmp/gradle-8.9-bin.zip "gradle-8.9/lib/gradle-wrapper.jar" \
+          -d gradle/wrapper/
+        rm /tmp/gradle-8.9-bin.zip
+        # Verify
         ls -lh gradle/wrapper/gradle-wrapper.jar
+        file gradle/wrapper/gradle-wrapper.jar
 
     - name: Cache Gradle packages
       uses: actions/cache@v4
