@@ -46,10 +46,7 @@ fun ShizukuSetupScreen() {
             CyberCard(modifier = Modifier.fillMaxWidth()) {
                 Text("STEP 2: WIRELESS DEBUGGING", style = MaterialTheme.typography.labelMedium, color = NeonCyan)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("1. Enable Developer Options
-2. Go to Wireless Debugging
-3. Pair with pairing code
-4. Start Shizuku", style = MaterialTheme.typography.bodyMedium, color = CyberTextSecondary)
+                Text("1. Enable Developer Options\n2. Go to Wireless Debugging\n3. Pair with pairing code\n4. Start Shizuku", style = MaterialTheme.typography.bodyMedium, color = CyberTextSecondary)
             }
 
             Spacer(modifier = Modifier.height(12.dp))
